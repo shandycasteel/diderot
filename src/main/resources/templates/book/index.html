@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+<div class="container">
+    <div class="header clearfix">
+        <nav th:replace="fragments :: navigation"></nav>
+    </div>
+
+    <div class="jumbotron">
+        <h1 th:text="${title}" class="display-3">Default Title</h1>
+    </div>
+
+
+    <p th:unless="${books} and ${books.size()}">no books :(</p>
+
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.publicationDate}"></td>
+            <td th:text="${book.genre}"></td>
+        </tr>
+
+    </table>
+
+    <br />
+
+
+</div>
+</body>
+</html>
