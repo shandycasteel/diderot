@@ -29,12 +29,13 @@
         </tr>
         </thead>
 
-        <tr th:each="book : ${books}">
+        <div id="content"></div>
+        <!-- <tr th:each="book : ${books}">
             <td th:text="${book.title}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.publicationDate}"></td>
             <td th:text="${book.genre}"></td>
-        </tr>
+        </tr> -->
 
     </table>
 
@@ -42,5 +43,17 @@
 
 
 </div>
+
+    <script>
+        function handleResponse(response) {
+            for (var i = 0; i < response.items.length; i++) {
+                var item = response.items[i];
+                // in production code, item.text should have the HTML entities escaped.
+                document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
+            }
+        }
+    </script>
+    <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
+
 </body>
 </html>
