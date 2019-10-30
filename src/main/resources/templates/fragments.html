@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
 <head th:fragment="head">
     <meta charset="UTF-8" />
-    <title th:text="${title}">Diderot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <script  type="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/diderot.css" th:href="@{/css/diderot.css}" />
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script  type="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+    <title th:text="${title}">Diderot</title>
 </head>
 
 <body>
 
-<nav th:fragment="navigation">
+<nav th:fragment="navigation" class="navbar navbar-dark bg-dark">
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link">Diderot</a></li>
         <li class="nav-item"><a class="nav-link" href="/books">Books</a></li>

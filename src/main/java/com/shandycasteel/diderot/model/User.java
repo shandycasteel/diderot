@@ -4,12 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.Instant;
 
 @Data
@@ -19,13 +15,17 @@ import java.time.Instant;
 public class User {
 
     @Id
-    @GeneratedValue
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long id;
 
     @NotNull
     @Size(min=5, max=15, message = "Your username can be between 5 and 15 characters")
+    @Column(unique = true)
     private String username;
 
+    @NotEmpty(message = "This is not a valid email")
     @Email(message = "This is not a valid email")
     private String email;
 
@@ -33,9 +33,11 @@ public class User {
     @Size(min=6, max=64, message = "Passwords can be between 6 and 64 characters")
     private String password;
 
+    @Transient
     @NotNull(message="Passwords do not match")
     private String verifyPassword;
 
+    @PastOrPresent
     private Instant joinDate = Instant.now();
 
     private void checkPassword() {
