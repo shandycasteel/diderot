@@ -38,7 +38,7 @@ public class HomeController {
         }
 
         userRepository.save(newUser);
-        return "redirect:";
+        return "redirect:/";
     }
 
 }
