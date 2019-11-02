@@ -40,7 +40,7 @@ public class User {
     @PastOrPresent
     private Instant joinDate = Instant.now();
 
-    private void checkPassword() {
+    public void checkPassword() {
         if (password != null && verifyPassword != null && !password.equals(verifyPassword)) {
             verifyPassword = null;
         }

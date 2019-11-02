@@ -17,12 +17,10 @@
 
     <div class="container">
     <form method="post" style="max-width: 600px;" th:object="${user}">
-        <fieldset class="form-group">
-            <label th:for="username" class="bmd-label-floating">Username</label>
-            <input type="text" th:field="*{username}" class="form-control" />
-            <span class="bmd-help">This is your public-facing site identity.</span>
+        <div class="form-label-group">
+            <input class="form-control" type="text" th:field="*{username}" placeholder="Username" autofocus />
             <span th:errors="*{username}" class="error text-danger"></span>
-        </fieldset>
+            </div>
 
         <div class="form-label-group">
             <input class="form-control" type="email" th:field="*{email}" placeholder="Email" autofocus />

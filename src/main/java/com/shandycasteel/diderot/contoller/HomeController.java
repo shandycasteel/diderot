@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class HomeController {
     }
 
     @PostMapping
-    public String processAddUserForm(Model model, @ModelAttribute @Valid User newUser, Errors errors) {
+    public String processHomeForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
 
         model.addAttribute("title", pageTitle);
         model.addAttribute("user", newUser);
@@ -37,8 +38,8 @@ public class HomeController {
             return "index";
         }
 
-        userRepository.save(newUser);
-        return "redirect:/";
+        userRepository.saveAndFlush(newUser);
+        return "redirect:";
     }
 
 }
