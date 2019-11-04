@@ -12,29 +12,29 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table
 public class User {
 
     @Id
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(updatable = false)
     private Long id;
 
     @NotNull
-    @Size(min=5, max=15, message = "Your username can be between 5 and 15 characters")
+    @Size(min=5, max=15, message="Your username can be between 5 and 15 characters.")
     @Column(unique = true)
     private String username;
 
-    @NotEmpty(message = "This is not a valid email")
-    @Email(message = "This is not a valid email")
+    @NotEmpty(message="This is not a valid email")
+    @Email(message="This is not a valid email.")
     private String email;
 
     @NotNull
-    @Size(min=6, max=64, message = "Passwords can be between 6 and 64 characters")
+    @Size(min=8, message="Passwords may not be shorter than 8 characters.")
     private String password;
 
+    @NotNull(message="Passwords do not match.")
     @Transient
-    @NotNull(message="Passwords do not match")
     private String verifyPassword;
 
     @PastOrPresent

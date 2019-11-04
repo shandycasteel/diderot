@@ -5,41 +5,38 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-
-    <div class="header clearfix">
-    <div class="bg"></div>
+    <div class="container">
         <nav th:replace="fragments :: navigation"></nav>
     </div>
 
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="d-flex justofy-content-center">
         <h1 th:text="${title}" class="display-3">Diderot</h1>
-    </div>
 
-    <div class="container">
     <form method="post" style="max-width: 600px;" th:object="${user}">
-        <div class="form-label-group">
-            <input class="form-control" type="text" th:field="*{username}" placeholder="Username" autofocus />
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="text" th:field="*{username}" placeholder="Username" title="Usernames can be between 5 and 15 characters" />
             <span th:errors="*{username}" class="error text-danger"></span>
             </div>
-
-        <div class="form-label-group">
-            <input class="form-control" type="email" th:field="*{email}" placeholder="Email" autofocus />
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="email" th:field="*{email}" placeholder="Email" title="Enter a valid email address" />
             <span th:errors="*{email}" class="error text-danger"></span>
         </div>
-
-        <div class="form-label-group">
-            <input class="form-control" type="password" th:field="*{password}" placeholder="Password" autofocus />
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="password" th:field="*{password}" placeholder="Password" title="Passwords can be between 6 and 64 characters" />
             <span th:errors="*{password}" class="error text-danger"></span>
         </div>
 
-        <div class="form-label-group">
-            <input class="form-control" type="password" th:field="*{verifyPassword}" placeholder="Verify Password" autofocus />
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="password" th:field="*{verifyPassword}" placeholder="Verify Password" title="Verify Password" />
             <span th:errors="*{verifyPassword}" class="error text-danger"></span>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Join Today</button>
+        <button class="btn btn-lg secondary btn-block" type="submit">Join Today</button>
 
     </form>
+    </div>
+    </div>
     </div>
 
 </body>
