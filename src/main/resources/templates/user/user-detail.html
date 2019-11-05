@@ -11,21 +11,20 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<table class="table">
+<table class="table" th:object="${user}>
 
     <thead class="thead-dark">
     <tr>
         <th>Username</th>
-        <th></th>
         <th>Email</th>
         <th>Date Joined</th>
     </tr>
     </thead>
 
     <tr>
-        <td th:text="${user.username}">User<td>
-        <td th:text="${user.email}">Email</td>
-        <td th:text="${user.joinDate}">Date Joined</td>
+        <td th:field="*{username}">User<td>
+        <td th:field="*{email}">Email</td>
+        <td th:field="*{joinDate}">Date Joined</td>
     </tr>
 
 </table>

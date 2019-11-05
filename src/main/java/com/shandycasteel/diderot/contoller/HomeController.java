@@ -38,8 +38,10 @@ public class HomeController {
             return "index";
         }
 
+        User currentUser = UserService;
         userRepository.saveAndFlush(newUser);
-        return "redirect:";
+        userRepository.getOne(userRepository.)
+        return "redirect:user/user-detail";
     }
 
 }
