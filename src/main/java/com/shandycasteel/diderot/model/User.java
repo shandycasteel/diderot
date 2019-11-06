@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,8 +17,8 @@ import java.time.Instant;
 public class User {
 
     @Id
-    @GeneratedValue
-    @Column(updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
 
     @NotNull
@@ -27,6 +28,7 @@ public class User {
 
     @NotEmpty(message="This is not a valid email")
     @Email(message="This is not a valid email.")
+    @Column(unique = true)
     private String email;
 
     @NotNull
@@ -39,6 +41,12 @@ public class User {
 
     @PastOrPresent
     private Instant joinDate = Instant.now();
+
+    private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public void checkPassword() {
         if (password != null && verifyPassword != null && !password.equals(verifyPassword)) {
