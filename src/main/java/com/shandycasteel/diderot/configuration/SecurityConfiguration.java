@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         auth.
                 jdbcAuthentication()
-                .usersByEmailQuery(usersQuery)
+                .usersByUsernameQuery(usersQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
     }

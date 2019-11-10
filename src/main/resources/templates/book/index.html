@@ -14,10 +14,6 @@
         <h1 th:text="${title}" class="display-3">Default Title</h1>
     </div>
 
-
-    <p th:unless="${books} and ${books.size()}">no books :(</p>
-
-
     <table class="table table-bordered table-hover">
 
         <thead class="thead-dark">
@@ -37,23 +33,24 @@
             <td th:text="${book.genre}"></td>
         </tr> -->
 
+        <script>
+            function handleResponse(response) {
+                for (var i = 0; i < response.items.length; i++) {
+                    var item = response.items[i];
+                    // in production code, item.text should have the HTML entities escaped.
+                    document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title +  " | " + item.volumeInfo.authors;
+                    document.getE
+                }
+            }
+        </script>
+        <script src="https://www.googleapis.com/books/v1/volumes?q=john+banville&callback=handleResponse"></script>
+
     </table>
 
     <br />
 
 
 </div>
-
-    <script>
-        function handleResponse(response) {
-            for (var i = 0; i < response.items.length; i++) {
-                var item = response.items[i];
-                // in production code, item.text should have the HTML entities escaped.
-                document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
-            }
-        }
-    </script>
-    <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
 
 </body>
 </html>
