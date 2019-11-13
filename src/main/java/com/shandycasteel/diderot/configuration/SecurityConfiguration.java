@@ -17,23 +17,23 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+   /* @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private DataSource dataSource;
 
     @Value("${spring.queries.users-query}")
-    private String usersQuery;
+    private String usersQuery; */
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                //jdbcAuthentication()
+                //.usersByUsernameQuery(usersQuery)
+                //.dataSource(dataSource)
+                //.passwordEncoder(bCryptPasswordEncoder);
+            .withUser("user1".password())
     }
 
     @Override
