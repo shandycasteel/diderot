@@ -13,12 +13,11 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
     private Long id;
 
     @NotNull
@@ -44,6 +43,8 @@ public class User {
 
     private int active;
 
+    private Set roles;
+
     public void checkPassword() {
         if (password != null && verifyPassword != null && !password.equals(verifyPassword)) {
             verifyPassword = null;
@@ -53,6 +54,14 @@ public class User {
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
         checkPassword();
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_role",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @ JoinColumn(name = "role_id"))
+    public Set getRoles() {
+        return roles;
     }
 
 }
