@@ -1,17 +1,10 @@
 package com.shandycasteel.diderot.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
@@ -20,48 +13,74 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Size(min=5, max=15, message="Your username can be between 5 and 15 characters.")
-    @Column(unique = true)
     private String username;
 
-    @NotEmpty(message="This is not a valid email")
-    @Email(message="This is not a valid email.")
-    @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Size(min=8, message="Passwords may not be shorter than 8 characters.")
     private String password;
 
-    @NotNull(message="Passwords do not match.")
     @Transient
-    private String verifyPassword;
+    private String passwordConfirm;
 
     @PastOrPresent
     private Instant joinDate = Instant.now();
 
-    private int active;
-
-    private Set roles;
-
-    public void checkPassword() {
-        if (password != null && verifyPassword != null && !password.equals(verifyPassword)) {
-            verifyPassword = null;
-        }
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
-        checkPassword();
-    }
-
     @ManyToMany
-    @JoinTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @ JoinColumn(name = "role_id"))
-    public Set getRoles() {
+    private Set<Role> roles;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public Instant getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(Instant joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public Set<Role> getRoles() {
         return roles;
     }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
