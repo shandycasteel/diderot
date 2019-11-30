@@ -1,6 +1,6 @@
-package com.shandycasteel.diderot.validator;
+package com.shandycasteel.diderot.util;
 
-import com.shandycasteel.diderot.model.User;
+import com.shandycasteel.diderot.entity.User;
 import com.shandycasteel.diderot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.configuration;
+package com.shandycasteel.diderot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 }

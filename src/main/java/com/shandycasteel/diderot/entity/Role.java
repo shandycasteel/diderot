@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.model;
+package com.shandycasteel.diderot.entity;
 
 import javax.persistence.*;
 import java.util.Set;

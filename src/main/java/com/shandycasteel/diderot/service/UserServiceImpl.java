@@ -1,6 +1,6 @@
 package com.shandycasteel.diderot.service;
 
-import com.shandycasteel.diderot.model.User;
+import com.shandycasteel.diderot.entity.User;
 import com.shandycasteel.diderot.repository.RoleRepository;
 import com.shandycasteel.diderot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

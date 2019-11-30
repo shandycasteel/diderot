@@ -1,7 +1,7 @@
 package com.shandycasteel.diderot.service;
 
-import com.shandycasteel.diderot.model.Role;
-import com.shandycasteel.diderot.model.User;
+import com.shandycasteel.diderot.entity.Role;
+import com.shandycasteel.diderot.entity.User;
 import com.shandycasteel.diderot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

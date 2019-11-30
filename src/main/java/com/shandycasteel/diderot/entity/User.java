@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.model;
+package com.shandycasteel.diderot.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -6,13 +6,16 @@ import java.time.Instant;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(updatable=false)
     private Long id;
 
+    @Size(min=5, max=15, message = "Your username can be between 5 and 15 characters")
+    @Column(nullable=false, unique=true)
     private String username;
 
     private String password;

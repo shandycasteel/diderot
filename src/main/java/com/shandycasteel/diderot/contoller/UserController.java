@@ -1,9 +1,9 @@
 package com.shandycasteel.diderot.contoller;
 
-import com.shandycasteel.diderot.model.User;
+import com.shandycasteel.diderot.entity.User;
 import com.shandycasteel.diderot.service.SecurityService;
 import com.shandycasteel.diderot.service.UserService;
-import com.shandycasteel.diderot.validator.UserValidator;
+import com.shandycasteel.diderot.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
