@@ -13,19 +13,21 @@
 
 <table class="table" th:object="${user}>
 
-    <thead class="thead-dark">
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Date Joined</th>
-    </tr>
-    </thead>
+    <thead class=" thead-dark
+">
+<tr>
+  <th>Username</th>
+  <th>Email</th>
+  <th>Date Joined</th>
+</tr>
+</thead>
 
-    <tr>
-        <td th:field="*{username}">User<td>
-        <td th:field="*{email}">Email</td>
-        <td th:field="*{joinDate}">Date Joined</td>
-    </tr>
+<tr>
+  <td th:field="*{username}">User
+  <td>
+  <td th:field="*{email}">Email</td>
+  <td th:field="*{joinDate}">Date Joined</td>
+</tr>
 
 </table>
 

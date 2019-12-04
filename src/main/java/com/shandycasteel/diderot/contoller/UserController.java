@@ -15,54 +15,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+  @Autowired
+  private UserService userService;
 
-    @Autowired
-    private SecurityService securityService;
+  @Autowired
+  private SecurityService securityService;
 
-    @Autowired
-    private UserValidator userValidator;
+  @Autowired
+  private UserValidator userValidator;
 
-    @GetMapping("/join")
-    public String join(Model model) {
-        model.addAttribute("userForm", new User());
-        model.addAttribute("title", "Join Diderot");
+  @GetMapping("/join")
+  public String join(Model model) {
+    model.addAttribute("userForm", new User());
+    model.addAttribute("title", "Join Diderot");
 
-        return "registration";
+    return "registration";
+  }
+
+  @PostMapping("/join")
+  public String join(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    userValidator.validate(userForm, bindingResult);
+
+    if (bindingResult.hasErrors()) {
+      return "registration";
     }
 
-    @PostMapping("/join")
-    public String join(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
+    userService.save(userForm);
 
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
+    securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        userService.save(userForm);
+    return "redirect:/welcome";
+  }
 
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+  @GetMapping("login")
+  public String login(Model model, String error, String logout) {
+    model.addAttribute("title", "Diderot Login");
 
-        return "redirect:/welcome";
-    }
+    if (error != null)
+      model.addAttribute("error", "Your username or password is invalid.");
 
-    @GetMapping("login")
-    public String login(Model model, String error, String logout) {
-        model.addAttribute("title", "Diderot Login");
+    if (logout != null)
+      model.addAttribute("message", "Your logout was successful.");
 
-        if (error  != null)
-            model.addAttribute("error", "Your username or password is invalid.");
+    return "login";
+  }
 
-        if (logout != null)
-            model.addAttribute("message", "Your logout was successful.");
-
-        return "login";
-    }
-
-    @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        model.addAttribute("title", "Welcome to Diderot");
-        return "welcome";
-    }
+  @GetMapping({"/", "/welcome"})
+  public String welcome(Model model) {
+    model.addAttribute("title", "Welcome to Diderot");
+    return "welcome";
+  }
 }

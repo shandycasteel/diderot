@@ -17,22 +17,21 @@ import java.util.Collection;
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUsersByUsername(String userName) throws UsernameNotFoundException
-    {
-        User user = userRepository.findByEmail(userName)
-        .orElseThrow(() -> new UsernameNotFoundException("Email " +  userName + " not found"));
+  @Override
+  public UserDetails loadUsersByUsername(String userName) throws UsernameNotFoundException {
+    User user = userRepository.findByEmail(userName)
+        .orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthorities(user));
-    }
+    return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthorities(user));
+  }
 
-    private static Collection<? extends GrantedAuthority> getAuthorities(User user) {
-        String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new);
-        Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
+  private static Collection<? extends GrantedAuthority> getAuthorities(User user) {
+    String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new);
+    Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
 
-        return authorities;
-    }
+    return authorities;
+  }
 }

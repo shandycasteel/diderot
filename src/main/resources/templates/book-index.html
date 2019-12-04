@@ -6,34 +6,34 @@
 
 <body>
 <div class="container">
-    <div class="header clearfix">
-        <nav th:replace="fragments :: navigation"></nav>
-    </div>
+  <div class="header clearfix">
+    <nav th:replace="fragments :: navigation"></nav>
+  </div>
 
-    <div class="jumbotron">
-        <h1 th:text="${title}" class="display-3">Default Title</h1>
-    </div>
+  <div class="jumbotron">
+    <h1 th:text="${title}" class="display-3">Default Title</h1>
+  </div>
 
-    <table class="table table-bordered table-hover">
+  <table class="table table-bordered table-hover">
 
-        <thead class="thead-dark">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Genre</th>
-            <th></th>
-        </tr>
-        </thead>
+    <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th></th>
+    </tr>
+    </thead>
 
-        <div id="content"></div>
-        <!-- <tr th:each="book : ${books}">
-            <td th:text="${book.title}"></td>
-            <td th:text="${book.author}"></td>
-            <td th:text="${book.publicationDate}"></td>
-            <td th:text="${book.genre}"></td>
-        </tr> -->
+    <div id="content"></div>
+    <!-- <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.publicationDate}"></td>
+        <td th:text="${book.genre}"></td>
+    </tr> -->
 
-        <script>
+    <script>
             function handleResponse(response) {
                 for (var i = 0; i < response.items.length; i++) {
                     var item = response.items[i];
@@ -42,12 +42,14 @@
                     document.getE
                 }
             }
-        </script>
-        <script src="https://www.googleapis.com/books/v1/volumes?q=john+banville&callback=handleResponse"></script>
 
-    </table>
 
-    <br />
+    </script>
+    <script src="https://www.googleapis.com/books/v1/volumes?q=john+banville&callback=handleResponse"></script>
+
+  </table>
+
+  <br/>
 
 
 </div>
