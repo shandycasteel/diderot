@@ -34,14 +34,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     auth
-        .userDetailsService(customUserDetailsService)
-        .passwordEncoder(passwordEncoder());
+      .userDetailsService(customUserDetailsService)
+      .passwordEncoder(passwordEncoder());
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .headers()
+      .headers()
+        .frameOptions().sameOrigin()
+        .and()
+          .authorizeRequests()
+            .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
+            .antMatchers("/").permitAll()
+            .anyRequest().authenticated()
+          .and()
+          .formLogin()
+            .loginPage("login")
+            .defaultSuccessUrl("/home")
+            .failureUrl("/login?error")
+            .permitAll()
+          .and()
+          .logout()
+        
+        
+
+
 
   }
 
