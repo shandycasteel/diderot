@@ -1,7 +1,6 @@
-package com.shandycasteel.diderot.entity;
+package com.shandycasteel.diderot.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity

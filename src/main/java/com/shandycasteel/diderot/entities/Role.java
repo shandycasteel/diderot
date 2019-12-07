@@ -1,9 +1,8 @@
-package com.shandycasteel.diderot.entity;
+package com.shandycasteel.diderot.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")

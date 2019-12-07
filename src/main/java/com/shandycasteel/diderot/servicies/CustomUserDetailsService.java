@@ -1,7 +1,7 @@
-package com.shandycasteel.diderot.service;
+package com.shandycasteel.diderot.servicies;
 
-import com.shandycasteel.diderot.entity.User;
-import com.shandycasteel.diderot.repository.UserRepository;
+import com.shandycasteel.diderot.entities.User;
+import com.shandycasteel.diderot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Service
@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
   private UserRepository userRepository;
 
   @Override
-  public UserDetails loadUsersByUsername(String userName) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
     User user = userRepository.findByEmail(userName)
         .orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
 

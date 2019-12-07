@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.service;
+package com.shandycasteel.diderot.servicies;
 
 public interface SecurityService {
   String findLoggedInUsername();

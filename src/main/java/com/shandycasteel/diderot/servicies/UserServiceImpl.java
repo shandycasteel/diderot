@@ -1,8 +1,8 @@
-package com.shandycasteel.diderot.service;
+package com.shandycasteel.diderot.servicies;
 
-import com.shandycasteel.diderot.entity.User;
-import com.shandycasteel.diderot.repository.RoleRepository;
-import com.shandycasteel.diderot.repository.UserRepository;
+import com.shandycasteel.diderot.entities.User;
+import com.shandycasteel.diderot.repositories.RoleRepository;
+import com.shandycasteel.diderot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

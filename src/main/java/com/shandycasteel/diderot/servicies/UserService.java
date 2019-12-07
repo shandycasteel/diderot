@@ -1,6 +1,6 @@
-package com.shandycasteel.diderot.service;
+package com.shandycasteel.diderot.servicies;
 
-import com.shandycasteel.diderot.entity.User;
+import com.shandycasteel.diderot.entities.User;
 
 public interface UserService {
 

@@ -1,10 +1,9 @@
-package com.shandycasteel.diderot.entity;
+package com.shandycasteel.diderot.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")

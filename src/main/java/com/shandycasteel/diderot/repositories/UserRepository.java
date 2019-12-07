@@ -1,6 +1,6 @@
-package com.shandycasteel.diderot.repository;
+package com.shandycasteel.diderot.repositories;
 
-import com.shandycasteel.diderot.entity.User;
+import com.shandycasteel.diderot.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

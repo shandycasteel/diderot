@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.service;
+package com.shandycasteel.diderot.servicies;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
