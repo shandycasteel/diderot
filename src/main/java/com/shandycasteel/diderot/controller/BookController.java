@@ -1,6 +1,6 @@
-package com.shandycasteel.diderot.web;
+package com.shandycasteel.diderot.controller;
 
-import com.shandycasteel.diderot.repositories.BookRepository;
+import com.shandycasteel.diderot.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

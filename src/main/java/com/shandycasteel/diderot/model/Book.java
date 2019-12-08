@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.entities;
+package com.shandycasteel.diderot.model;
 
 import javax.persistence.*;
 import java.util.Date;

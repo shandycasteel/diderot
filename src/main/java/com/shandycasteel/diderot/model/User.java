@@ -1,4 +1,4 @@
-package com.shandycasteel.diderot.entities;
+package com.shandycasteel.diderot.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -6,44 +6,44 @@ import java.time.Instant;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(updatable = false)
-  private Long id;
+  @Column(name = "user_id")
+  private int id;
 
-  @Size(min = 5, max = 15, message = "Your username can be between 5 and 15 characters")
-  @Column(nullable = false, unique = true)
-  @NotEmpty
+  @Column(name = "user_id", nullable = false, unique = true)
+  @Size(min = 5, max = 15, message = "*Your username can be between 5 and 15 characters")
+  @NotEmpty(message = "*Please provide a username")
   private String name;
 
-  @Column(nullable = false, unique = true)
-  @NotEmpty
-  @Email(message = "{errors.invalid_email}")
+  @Column(name = "email", nullable = false, unique = true)
+  @NotEmpty(message = "*An email address is required")
+  @Email(message = "*Please provide a valid email address")
   private String email;
 
-  @Column(nullable = false)
-  @NotEmpty
-  @Size(min = 8, message = "Your password needs to be at least 8 character")
+  @Column(name = "password", nullable = false)
+  @NotEmpty(message = "*A password is required")
+  @Size(min = 8, message = "*Your password needs to be at least 8 character")
   private String password;
 
   @PastOrPresent
   private Instant joinDate = Instant.now();
 
-  @ManyToMany(cascade = CascadeType.MERGE)
-  @JoinTable(
-      name = "user_role",
-      joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-      inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+  @Column(name = "active")
+  private int active;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private List<Role> roles;
 
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -81,6 +81,14 @@ public class User {
   public void setJoinDate(Instant joinDate) {
 
     this.joinDate = joinDate;
+  }
+
+  public int getActive() {
+    return active;
+  }
+
+  public void setActive(int active) {
+    this.active = active;
   }
 
   public List<Role> getRoles() {
