@@ -16,10 +16,14 @@ public class HomeController {
 
   @GetMapping(".home")
   public String home(Model model) {
-    model.addAttribute("books", bookRepository.findAll());
+    model.addAttribute("bks", bookRepository.findAll());
     return "userhome";
   }
 
   @PostMapping("/messages")
-  public String saveMessage(Book book) {}
+  public String saveBook(Book book) {
+    bookRepository.save(book);
+    return "redirect:/home";
+  }
+
 }

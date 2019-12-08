@@ -17,7 +17,7 @@ public class User {
   @Size(min = 5, max = 15, message = "Your username can be between 5 and 15 characters")
   @Column(nullable = false, unique = true)
   @NotEmpty
-  private String username;
+  private String name;
 
   @Column(nullable = false, unique = true)
   @NotEmpty
@@ -47,12 +47,12 @@ public class User {
     this.id = id;
   }
 
-  public String getUsername() {
-    return username;
+  public String getName() {
+    return name;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getPassword() {
