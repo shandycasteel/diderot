@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 
 @Service("userService")
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService{
 
   private UserRepository userRepository;
   private RoleRepository roleRepository;
