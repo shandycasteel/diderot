@@ -1,8 +1,17 @@
 package com.shandycasteel.diderot.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "books")
 public class Book {
@@ -26,51 +35,4 @@ public class Book {
   @Column(nullable = false)
   private String genre;
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public Long getIsbn() {
-    return isbn;
-  }
-
-  public void setIsbn(Long isbn) {
-    this.isbn = isbn;
-  }
-
-  public Date getPublicationDate() {
-    return publicationDate;
-  }
-
-  public void setPublicationDate(Date publicationDate) {
-    this.publicationDate = publicationDate;
-  }
-
-  public String getGenre() {
-    return genre;
-  }
-
-  public void setGenre(String genre) {
-    this.genre = genre;
-  }
 }

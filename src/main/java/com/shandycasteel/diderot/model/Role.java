@@ -1,9 +1,16 @@
 package com.shandycasteel.diderot.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "role")
 public class Role {
@@ -14,23 +21,6 @@ public class Role {
   private int id;
 
   @Column(name = "role")
-  @NotEmpty
   private String role;
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return role;
-  }
-
-  public void setName(String name) {
-    this.role = name;
-  }
 
 }
