@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+<div class="container">
+  <nav th:replace="fragments :: navigation"></nav>
+</div>
+
+<div class="container">
+  <img th:src="@{/images/login.jpg}" class="img-responsive" width=100% height="300" alt="Logo"/>
+
+  <nav th:replace="fragments :: book-nav"></nav>
+
+  <div class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-12">
+          <th:block th:include="category-templates/new-cat"></th:block>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

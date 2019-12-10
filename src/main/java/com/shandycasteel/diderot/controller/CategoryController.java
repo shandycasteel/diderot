@@ -51,7 +51,7 @@ public class CategoryController {
     model.addAttribute("category", category);
     model.addAttribute("books", books);
 
-    return "categories/showById";
+    return "categories/show-by-id";
   }
 
   // View of all existing Categories in database

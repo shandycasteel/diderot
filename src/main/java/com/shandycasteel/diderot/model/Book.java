@@ -32,7 +32,7 @@ public class Book {
     @NotEmpty
     private String author;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book_category",
         joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -46,13 +46,4 @@ public class Book {
     @NotEmpty
     private String description;
 
-
-    public Set<Category> getCategories() {
-      return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-      this.categories = categories;
-    }
-
-  }
+}

@@ -30,7 +30,7 @@ public class BookController {
     Book book = bookService.findById(id);
     model.addAttribute("book", book);
 
-    return "books/showById";
+    return "books/show-by-id";
   }
 
   // New Book form

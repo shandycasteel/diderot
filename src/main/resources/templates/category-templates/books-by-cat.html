@@ -1,7 +1,7 @@
 <br /><br />
 
 <div class="container">
-  <h3 class="text-center">Books: All Available</h3>
+  <h4 class="text-center">Books in <span th:text="${category.name}"></span></h4>
 </div>
 
 <br />
@@ -12,7 +12,6 @@
     <th></th>
     <th>Title</th>
     <th>Author</th>
-    <th>Category</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,11 +21,6 @@
       <td></td>
       <td th:text="${book.title}"></td>
       <td th:text="${book.author}"></td>
-      <td>
-        <th:block th:each="category : ${book.categories}">
-          <span th:text="${category.name} + ' '">Item description here...</span>
-        </th:block>
-      </td>
       <td><a th:href="@{'/book/show/' + ${book.id}}" class="btn btn-primary">View</a></td>
       <td><a th:href="@{'/book/' + ${book.id}}" class="btn btn-default">Edit</a></td>
       <td><a th:href="@{'/book/delete/' + ${book.id}}" class="btn btn-danger">Delete</a></td>

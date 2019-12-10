@@ -14,11 +14,11 @@
       </div>
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" aria-describedby="title" th:field="*{title}" playeholder="Harry Potter and the Deathly Hollows">
+        <input type="text" class="form-control" id="title" aria-describedby="title" th:field="*{title}" placeholder="Ex: In Search of Lost Time">
       </div>
       <div class="form-group">
         <label for="author">Author</label>
-        <input type="text" class="form-control" id="author" aria-describedby="author" th:field="*{author}" playeholder="Joanne K. Rowling"/>
+        <input type="text" class="form-control" id="author" aria-describedby="author" th:field="*{author}" placeholder="Ex: Marcel Proust"/>
       </div>
       <div class="form-group">
         <label for="category">Category</label>
@@ -28,11 +28,11 @@
       </div>
       <div class="form-group">
         <label for="date">Year</label>
-        <input type="text" class="form-control" id="date" th:field="*{dateField}"/>
+        <input type="date" class="form-control" id="date" th:field="*{dateField}" placeholder="Ex: 1913"/>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea rows="4" type="textarea" class="form-control" id="description" th:field="*{description}" playeholder="type here ..."/></textarea>
+        <textarea rows="4" type="textarea" class="form-control" id="description" th:field="*{description}" placeholder="Type here ..."/></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>

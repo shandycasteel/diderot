@@ -18,7 +18,7 @@ import java.util.Set;
 public class Category {
 
   @Id
-  @Column(name ="category_id")
+  @Column(name ="cat_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
@@ -27,9 +27,5 @@ public class Category {
 
   @ManyToMany(mappedBy = "categories")
   private Set<Book> books;
-
-  public Category(@NotEmpty String name) {
-    this.name = name;
-  }
 
 }
