@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+<div class="container">
+  <nav th:replace="fragments :: navigation"></nav>
+  <hr />
+</div>
+
+<div class="container" style="max-width: 600px;" th:object="${user}">
+
+  <div class="card text-center">
+    <span class=""card-img-top><img class="rounded-circle z-depth-2" th:src="@{/images/profile.jpg}" alt="Profile Image"
+                                    data-holder-rendered="true" /></span>
+    <div class="card-body">
+    <h3 class="card-title" th:text="${user.name}"></h3>
+    <p class="card-text"  th:text="${user.email}"></p>
+    <p>Joined: <span class="card-text" th:text="${user.joinDate}"></span></p>
+      <a th:href="@{/user/home}" class="btn btn-secondary">Edit Profile</a>
+    </div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

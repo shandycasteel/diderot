@@ -45,27 +45,33 @@ public class LoginController {
           .rejectValue("email", "error.user",
               "There is already a user registered with the email provided");
     }
+
     if (bindingResult.hasErrors()) {
       modelAndView.setViewName("registration");
-    } else {
-      userServiceImpl.saveUser(user);
-      modelAndView.addObject("successMessage", "User has been registered successfully");
-      modelAndView.addObject("user", new User());
-      modelAndView.setViewName("registration");
-
+      return modelAndView;
     }
+
+    userServiceImpl.saveUser(user);
+    modelAndView.addObject("successMessage", "User has been registered successfully");
+    modelAndView.addObject("user", new User());
+    modelAndView.setViewName("redirect:/login");
+
     return modelAndView;
   }
 
-  @RequestMapping(value="/admin/home", method = RequestMethod.GET)
+  @RequestMapping(value="/user/home", method = RequestMethod.GET)
   public ModelAndView home(){
     ModelAndView modelAndView = new ModelAndView();
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     User user = userServiceImpl.findUserByEmail(auth.getName());
-    modelAndView.addObject("userName", "Welcome " + user.getName() + " (" + user.getEmail() + ")");
-    modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-    modelAndView.setViewName("admin/home");
+    modelAndView.addObject("user", user);
+    modelAndView.setViewName("/user/home");
     return modelAndView;
+  }
+
+  @RequestMapping(value="/logout")
+  public String logout() {
+    return "redirect:/login";
   }
 
 }

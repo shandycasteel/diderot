@@ -24,8 +24,8 @@ public class User {
   private int id;
 
   @Column(name = "name", nullable = false, unique = true)
-  @Size(min = 5, max = 15, message = "*Your username can be between 5 and 15 characters")
-  @NotEmpty(message = "*Please provide a username")
+  @Size(min = 5, max = 15, message = "*Your community name can be between 5 and 15 characters")
+  @NotEmpty(message = "*Please provide a community name")
   private String name;
 
   @Column(name = "email", nullable = false, unique = true)
@@ -35,8 +35,12 @@ public class User {
 
   @Column(name = "password", nullable = false)
   @NotEmpty(message = "*A password is required")
-  @Size(min = 8, message = "*Your password needs to be at least 8 character")
+  @Size(min = 8, message = "*Your password needs to be at least 8 characters")
   private String password;
+
+  @Transient
+  @NotNull(message="Your passwords do not match")
+  private String passwordConfirm;
 
   @PastOrPresent
   private Instant joinDate = Instant.now();
@@ -47,5 +51,16 @@ public class User {
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
+
+  private void matchPassword() {
+    if (password != null && passwordConfirm != null && !password.equals(passwordConfirm)) {
+      passwordConfirm = null;
+    }
+  }
+
+  public void setPasswordConfirm(String passwordConfirm)  {
+    this.passwordConfirm = passwordConfirm;
+    matchPassword();
+  }
 
 }
