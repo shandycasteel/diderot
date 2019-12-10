@@ -4,9 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 @Data
 @Builder
@@ -16,23 +21,38 @@ import java.util.Date;
 @Table(name = "books")
 public class Book {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+    @Id
+    @Column(name = "book_id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-  @Column(nullable = false)
-  private String title;
+    @NotEmpty
+    private String title;
 
-  @Column(nullable = false)
-  private String author;
+    @NotEmpty
+    private String author;
 
-  @Column(nullable = false)
-  private Long isbn;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "book_category",
+        joinColumns = { @JoinColumn(name = "book_id") },
+        inverseJoinColumns = { @JoinColumn(name = "category_id") })
+    private Set<Locale.Category> categories = new HashSet<>();
 
-  @Column(nullable = false)
-  private Date publicationDate;
+    @Column(name = "Year")
+    @DateTimeFormat(pattern = "yyyy")
+    private Date dateField;
 
-  @Column(nullable = false)
-  private String genre;
+    @Lob
+    @NotEmpty
+    private String description;
 
-}
+
+    public Set<Locale.Category> getCategories() {
+      return categories;
+    }
+
+    public void setCategories(Set<Locale.Category> categories) {
+      this.categories = categories;
+    }
+
+  }
