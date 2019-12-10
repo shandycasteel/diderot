@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,8 +40,16 @@ public class LoginController {
   @RequestMapping(value = "/registration", method = RequestMethod.POST)
   public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
     ModelAndView modelAndView = new ModelAndView();
-    User userExists = userServiceImpl.findUserByEmail(user.getEmail());
-    if (userExists != null) {
+    User userNameExists = userServiceImpl.findUserByName (user.getName());
+    User userEmailExists = userServiceImpl.findUserByEmail(user.getEmail());
+
+    if (userNameExists != null) {
+      bindingResult
+          .rejectValue("name", "error.user",
+              "There is already a user registered with that username");
+    }
+
+    if (userEmailExists != null) {
       bindingResult
           .rejectValue("email", "error.user",
               "There is already a user registered with the email provided");
@@ -60,7 +69,7 @@ public class LoginController {
   }
 
   @RequestMapping(value="/user/home", method = RequestMethod.GET)
-  public ModelAndView home(){
+  public ModelAndView home() {
     ModelAndView modelAndView = new ModelAndView();
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     User user = userServiceImpl.findUserByEmail(auth.getName());
@@ -72,6 +81,15 @@ public class LoginController {
   @RequestMapping(value="/logout")
   public String logout() {
     return "redirect:/login";
+  }
+
+  @PostMapping("/delete")
+  public String deleteUser() {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    User user = userServiceImpl.findUserByEmail(auth.getName());
+    userServiceImpl.deleteUser(user);
+
+    return logout();
   }
 
 }
