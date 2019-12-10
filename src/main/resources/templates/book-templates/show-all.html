@@ -1,0 +1,36 @@
+<br /><br />
+
+<div class="container">
+  <h3 class="text-center">Books: All Available</h3>
+</div>
+
+<br />
+
+<div class="content table-responsive table-full-width">
+  <table class="table table-striped">
+    <thead>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+      <td th:text="${book.title}"></td>
+      <td th:text="${book.author}"></td>
+      <td>
+        <th:block th:each="category : ${book.categories}">
+          <span th:text="${category.name} + ' '">Item description here...</span>
+        </th:block>
+      </td>
+      <td><a th:href="@{'/book/show/' + ${book.id}}" class="btn btn-primary">View</a></td>
+      <td><a th:href="@{'/book/' + ${book.id}}" class="btn btn-default">Edit</a></td>
+      <td><a th:href="@{'/book/delete/' + ${book.id}}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>

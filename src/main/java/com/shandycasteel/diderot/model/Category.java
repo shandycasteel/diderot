@@ -18,8 +18,8 @@ import java.util.Set;
 public class Category {
 
   @Id
-  @Column(name ="cat_id")
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name ="category_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
   @NotEmpty

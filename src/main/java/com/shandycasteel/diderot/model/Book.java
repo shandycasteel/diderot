@@ -22,8 +22,8 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @Column(name = "book_id", updatable = false, nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "book_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
@@ -34,9 +34,9 @@ public class Book {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "book_category",
-        joinColumns = { @JoinColumn(name = "book_id") },
-        inverseJoinColumns = { @JoinColumn(name = "category_id") })
-    private Set<Locale.Category> categories = new HashSet<>();
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     @Column(name = "Year")
     @DateTimeFormat(pattern = "yyyy")
@@ -47,11 +47,11 @@ public class Book {
     private String description;
 
 
-    public Set<Locale.Category> getCategories() {
+    public Set<Category> getCategories() {
       return categories;
     }
 
-    public void setCategories(Set<Locale.Category> categories) {
+    public void setCategories(Set<Category> categories) {
       this.categories = categories;
     }
 

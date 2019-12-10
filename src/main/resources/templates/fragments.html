@@ -34,5 +34,47 @@
   </ul>
 </nav>
 
+<nav th:fragment="book-nav" class="navbar navbar-light navbar-expand-lg" style="background-color: #DDE3ED">
+<ul class="navbar-nav mx-auto">
+
+  <li class="nav-item">
+  <span>
+    <a th:href="@{/books}" class="nav-link">
+      <span class="icon"><i class="fas fa-book"></i></span>
+      Books
+    </a>
+  </span>
+  </li>
+
+  <li class="nav-item">
+  <span>
+    <a th:href="@{/book/create}"  class="nav-link">
+      <span class="icon"><i class="fas fa-plus"></i></span>
+      Add Book
+    </a>
+  </span>
+  </li>
+
+  <li class="nav-item">
+  <span>
+    <a a th:href="@{/categories}" class="nav-link">
+      <span class="icon"><i class="fas fa-folder"></i></span>
+      Categories
+    </a>
+  </span>
+  </li>
+
+  <li class="nav-item">
+  <span>
+    <a th:href="@{/category/create}"  class="nav-link">
+      <span class="icon"><i class="fas fa-plus"></i></span>
+      Add Category
+    </a>
+  </span>
+  </li>
+
+</ul>
+</nav>
+
 </body>
 </html>
