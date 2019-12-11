@@ -4,37 +4,19 @@ import java.util.Set;
 
 public interface CrudService<T, ID> {
 
-  /**
-   * GET all Objects from DB
-   * @return all Objects from Database
-   */
+  // Gets all Objects from database
   Set<T> getAll();
 
-  /**
-   * finds an Object by its ID
-   * @param id    Database ID of Object
-   * @return      Object
-   */
+  // Finds an Object by ID
   T findById(ID id);
 
-  /**
-   * creates new Object and saves it in Database
-   * @param tDetails   field values
-   * @return           new Object
-   */
+  // Creates new Object and saves it in database
   Long create(T tDetails);
 
-  /**
-   * updates Object from Database with field values in taskDetails
-   * @param id        Database ID of Object
-   * @param tDetails  field values
-   * @return          updated Object
-   */
+  // Updates Object from database
   void update(ID id, T tDetails);
 
-  /**
-   * deletes Object from Database
-   * @param id    Database ID of Object
-   */
+  // deletes Object from database
   void delete(ID id);
+
 }

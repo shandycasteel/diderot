@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 @Data
@@ -32,18 +32,19 @@ public class Book {
     @NotEmpty
     private String author;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "book_category",
-        joinColumns = @JoinColumn(name = "book_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new HashSet<>();
+        joinColumns = {@JoinColumn(name = "book_id")},
+        inverseJoinColumns = {@JoinColumn(name = "category_id")})
+    private Set<Category>categories = new HashSet<>();
 
-    @Column(name = "Year")
+    @Column(name = "year")
     @DateTimeFormat(pattern = "yyyy")
     private Date dateField;
 
     @Lob
     @NotEmpty
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
 
 }
