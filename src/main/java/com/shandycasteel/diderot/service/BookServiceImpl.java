@@ -16,7 +16,7 @@ public class BookServiceImpl implements BookService {
   private BookRepository bookRepository;
 
   @Override
-  public Set<Book> getAll(){
+  public Set<Book> getAll() {
     Set<Book> bookSet = new HashSet<>();
     bookRepository.findAll().iterator().forEachRemaining(bookSet::add);
 
@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public Book findById(Long bookId){
+  public Book findById(Long bookId) {
     Optional<Book> bookOptional = bookRepository.findById(bookId);
 
     if (!bookOptional.isPresent()) {

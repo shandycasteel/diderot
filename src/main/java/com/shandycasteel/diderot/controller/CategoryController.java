@@ -20,7 +20,7 @@ public class CategoryController {
   private CategoryService categoryService;
 
   // Returns Form for new Category
-  @RequestMapping( path = "/category/create")
+  @RequestMapping(path = "/category/create")
   public String newCatForm(Model model) {
     model.addAttribute("category", new Category());
 
