@@ -11,8 +11,6 @@ import java.time.Instant;
 import java.util.Set;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "user")

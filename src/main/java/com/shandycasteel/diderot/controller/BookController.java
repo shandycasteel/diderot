@@ -62,12 +62,12 @@ public class BookController {
   }
 
   // Shows all existing books as list
-  @GetMapping("/books")
+  @GetMapping({"/books", "/"})
   public String showAllBooks(Model model) {
     model.addAttribute("books", bookService.getAll());
     model.addAttribute("categories", categoryService.getAll());
 
-    return "books/index";
+    return "index";
   }
 
   @RequestMapping(path = "/book/{id}", method = RequestMethod.POST)
