@@ -50,6 +50,12 @@ public class User {
       inverseJoinColumns = {@JoinColumn(name = "role_id")})
   private Set<Role> roles;
 
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_book_collection",
+      joinColumns = {@JoinColumn(name = "user_id")},
+      inverseJoinColumns = {@JoinColumn(name = "book_id")})
+  private Set<Book> bookCollection;
+
   private void matchPassword() {
     if (password != null && passwordConfirm != null && !password.equals(passwordConfirm)) {
       passwordConfirm = null;
@@ -61,4 +67,11 @@ public class User {
     matchPassword();
   }
 
+  public Set<Book> getBookCollection() {
+    return bookCollection;
+  }
+
+  public void setBookCollection(Set<Book> bookCollection) {
+    this.bookCollection = bookCollection;
+  }
 }
