@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public class BookCollectionKey {
+public class BookRatingKey {
 
   @Column(name = "user_id")
   Long userId;
@@ -13,7 +13,7 @@ public class BookCollectionKey {
   @Column(name = "book_id")
   Long bookId;
 
-  public BookCollectionKey(Long userId, Long bookId) {
+  public BookRatingKey(Long userId, Long bookId) {
     this.userId = userId;
     this.bookId = bookId;
   }
@@ -37,8 +37,8 @@ public class BookCollectionKey {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof BookCollectionKey)) return false;
-    BookCollectionKey that = (BookCollectionKey) o;
+    if (!(o instanceof BookRatingKey)) return false;
+    BookRatingKey that = (BookRatingKey) o;
     return Objects.equals(getUserId(), that.getUserId()) &&
         Objects.equals(getBookId(), that.getBookId());
   }

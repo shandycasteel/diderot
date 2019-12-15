@@ -39,8 +39,8 @@ public class Book {
     @Type(type = "org.hibernate.type.TextType")
     private String description;
 
-    @ManyToMany(mappedBy = "bookCollection")
-    Set<User> booksCollected;
+    @OneToMany(mappedBy = "book")
+    Set<BookRating> ratings;
 
     public Book(){}
 
