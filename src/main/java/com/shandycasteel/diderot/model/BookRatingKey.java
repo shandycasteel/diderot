@@ -2,10 +2,11 @@ package com.shandycasteel.diderot.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class BookRatingKey {
+public class BookRatingKey implements Serializable {
 
   @Column(name = "user_id")
   Long userId;
